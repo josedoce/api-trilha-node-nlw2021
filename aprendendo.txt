@@ -1,0 +1,8 @@
+como rodar um arquivo.ts no node:
+1- yarn add typescript -D
+2- yarn tsc --init (inicializar ts no node)
+3- yarn add ts-node-dev -D (compilador ts to js)
+    ->config ts-node-dev:
+    ->+scripts: {
+        +"dev":"ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    }
