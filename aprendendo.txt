@@ -1,4 +1,5 @@
 como rodar um arquivo.ts no node:
+1 dia:
 1- yarn add typescript -D
 2- yarn tsc --init (inicializar ts no node)
 3- yarn add ts-node-dev -D (compilador ts to js)
@@ -6,3 +7,35 @@ como rodar um arquivo.ts no node:
     ->+scripts: {
         +"dev":"ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
     }
+
+2 dia:
+formas de trabalhar com banco de dados na aplicação:
+1-usando um driver nativo do proprio banco de dados(muda de acordo com o banco).
+2-usando query-build, o knex é um bom exemplo.
+3-usando um ORM, sequelize e typeOrm são exemplos.
+
+instalação e configuração
+1-yarn add typeorm reflect-metadata
+2-configurando as migrations para usar os comandos de cli
+    ->config migrations e typeorm:
+    ->+scripts: {
+        +"typeorm":"ts-node-dev node_modules/typeorm/cli.js"
+    }
+    ->+ormconfig.json
+    ->+{
+        +"type":"sqlite", aqui digo o tipo de banco de dados
+        +"database":"./src/database/database.sqlite", //aqui digo onde esta o arquivo de db, caso seja em arquivo
+        +"migrations":["./src/database/migrations/**.ts"],//aqui digo onde está as migrations para serem mapeadas
+        +"entities": ["./src/models/**.ts"],//aqui digo onde está as entidades para serem mapeadas.
+        +"logging": true,//aqui defino se será exibido no console todas as consultas sql
+        +"cli":{//aqui seto na cli o diretorio das migrações para uso dos comandos
+            +"migrationsDir":"./src/database/migrations"
+        }
+    }
+    comandos:
+    para fazer a migração
+    yarn typeorm migration:create -n nomeDaMigration
+    para fazer o rollback(reverter alteração)
+    yarn typeorm migration:revert
+
+3-yarn add uuid para criar ids
