@@ -15,6 +15,7 @@ formas de trabalhar com banco de dados na aplicação:
 3-usando um ORM, sequelize e typeOrm são exemplos.
 
 instalação e configuração
+https://typeorm.io
 1-yarn add typeorm reflect-metadata
 2-configurando as migrations para usar os comandos de cli
     ->config migrations e typeorm:
