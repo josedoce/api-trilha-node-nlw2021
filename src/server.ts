@@ -1,4 +1,7 @@
+import 'reflect-metadata'; //deve ser o primeiro
 import express from 'express';
+import './database';
+import { router } from './routes';
 
 const app = express();
 /**
@@ -9,12 +12,7 @@ const app = express();
  * delete=>deletar
  * patch=>alteração especifica
  */
-app.get('/',(req, res)=>{
-    
-    return res.json({mensagem: "oiee"});
-});
-app.post('/',(req, res)=>{
-    return res.json({mensagem: "Os dados foram salvos com sucesso!"});
-});
+app.use(express.json());
+app.use(router);
 
 app.listen(3333, ()=>console.log("Rodando... :)"));
