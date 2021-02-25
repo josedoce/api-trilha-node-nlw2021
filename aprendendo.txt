@@ -39,4 +39,18 @@ https://typeorm.io
     para fazer o rollback(reverter alteração)
     yarn typeorm migration:revert
 
-3-yarn add uuid para criar ids
+3-yarn add uuid para criar ids diferenciadas
+
+3 dia:
+    1-testes automatizados, o que são e quais tipos poderemos utilizar?
+    -> 1-Testes unitários(para determinada funcionalidade, (não inclui testes com dados reais em db))(recomendado para backend)
+    -> 2-Testes de integração(recomendado para backend)
+        ->alvos do teste: 
+        -> request-> routes-> controller->repository
+        <- repository <- controller <- response
+
+    ->3-Ponta a Ponta (e2e)(recomendado para frontend)
+    2- instalação e configuração:
+    ->yarn add jest @types/jest -D (pacote para teste da aplicação)
+    ->yarn add ts-jest -D //para poder trabalhar com typescript nos testes
+    ->yarn add supertest @types/supertest -D para simular um servidor suas requisições e respostas, usaremos o supertest
