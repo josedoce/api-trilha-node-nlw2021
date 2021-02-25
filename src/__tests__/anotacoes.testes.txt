@@ -1,0 +1,3 @@
+//expect('galo').toBe('macho') = espero que galo seja macho
+//expect('galo').not.toBe('femea') = espero que galo não seja femea
+expect(response.body).toHaveProperty('id') = espero que response.body tenha uma propriedade id
