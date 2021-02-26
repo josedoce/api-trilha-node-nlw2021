@@ -60,3 +60,14 @@ https://typeorm.io
     1-yarn add nodemailer (pacote que nos permitirá enviar emails)
         ->para testes usaremos o smtp fake do ethereal
         ->site: https://ethereal.email
+
+
+5 dia: finalizando a nossa api com validações
+    1-criação do calculo do nps
+    2-validações de dados com o yup
+        ->yarn add yup
+    3-tratamento de erros no express com o express-async-errors
+        ->yarn add express-async-errors
+
+
+    finalizado!
