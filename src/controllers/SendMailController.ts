@@ -17,37 +17,38 @@ class SendMailController {
             email
         });
         if(!user){
-            return res.status(400).json({
-                error: 'User does not exists!'
-            });
+            throw new Error('User does not exists!');
         }
         
         const survey = await surveysRepository.findOne({
             id: survey_id
         });
         if(!survey){
-            return res.status(400).json({
-                error: 'Survey does not exists!'
-            });
+            throw new Error('Survey does not exists!');
         }
 
         const surveyUserAlreadyExists = await surveysUsersRepository.findOne({
-            where: [{user_id: user.id},{value: null}],
+            where: {user_id: user.id, value: null}, // or[{},{}] / and{item:valor, item:valor}
             relations: ['user','survey']
         });
 
         const npsPath = resolve(__dirname, '..','views','emails','npsMail.hbs');
+        
         const variables = {
             nome: user.name,
             title: survey.title,
             description: survey.description,
-            user_id: user.id,
+            id: '',
             link: process.env.URL_MAIL
         }
-        if(surveyUserAlreadyExists){
+
+        if(surveyUserAlreadyExists){ //se existir um surveyUser pare aqui
+            variables.id = surveyUserAlreadyExists.id;
             await SendMailService.execute(email, survey.title, variables, npsPath);
             return res.json(surveyUserAlreadyExists);
         }
+        //senão existir surveyUser, execute o codigo abaixo.
+
         //procedimentos
         //salvar as informações na tabela surveyUser
         const surveyUser = await surveysUsersRepository.create({
@@ -56,7 +57,8 @@ class SendMailController {
         });
         await surveysUsersRepository.save(surveyUser);
         //Enviar e-email para o usuário
-        
+        variables.id = surveyUser.id;
+
         await SendMailService.execute(email, survey.title, variables, npsPath);
         return res.json(surveyUser);
     }  
