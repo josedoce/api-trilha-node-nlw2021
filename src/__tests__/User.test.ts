@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { getConnection } from 'typeorm';
 import { app } from '../app';
 import createConnection from '../database';
 //#region Anotacoes
@@ -12,7 +13,12 @@ describe('Users',()=>{
         //rode a migração aqui
         const connection = await createConnection();
         await connection.runMigrations();
-    })
+    });
+    afterAll(async()=>{
+        const connection = getConnection();
+        await connection.dropDatabase();
+        await connection.close();
+    });
     //testando o metodo post no endpoint users
     it('Esperamos criar um novo usuario', async()=>{
         const response = await request(app).post('/users')
