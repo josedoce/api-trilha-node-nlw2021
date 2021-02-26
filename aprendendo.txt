@@ -54,3 +54,9 @@ https://typeorm.io
     ->yarn add jest @types/jest -D (pacote para teste da aplicação)
     ->yarn add ts-jest -D //para poder trabalhar com typescript nos testes
     ->yarn add supertest @types/supertest -D para simular um servidor suas requisições e respostas, usaremos o supertest
+
+
+4 dia: Envio de e-mail
+    1-yarn add nodemailer (pacote que nos permitirá enviar emails)
+        ->para testes usaremos o smtp fake do ethereal
+        ->site: https://ethereal.email
